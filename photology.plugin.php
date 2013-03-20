@@ -17,12 +17,6 @@ class Photology extends Plugin
 		}
 	}
 
-	function action_plugin_deactivation( $file )
-	{
-		if ( Plugins::id_from_file($file) == Plugins::id_from_file(__FILE__) ) {
-		}
-	}
-
 	public function filter_plugin_config( $actions, $plugin_id )
 	{
 		if ( $plugin_id == $this->plugin_id() ) {
