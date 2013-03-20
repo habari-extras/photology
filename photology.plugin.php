@@ -1,22 +1,6 @@
 <?php
 class Photology extends Plugin
 {
-	private	$uuid = '3e343f83-75cd-4648-91a6-22c4da399209';	
-
-	public function action_init()
-	{
-	}
-
-	public function action_plugin_activation( $file )
-	{
-		if ( realpath( $file ) == __FILE__ ) {
-			if ( Options::get( 'photology__maxdim' ) == null ) {
-				// Set a reasonable default
-				Options::set( 'photology__maxdim', 100 );
-			}
-		}
-	}
-
 	public function filter_plugin_config( $actions, $plugin_id )
 	{
 		if ( $plugin_id == $this->plugin_id() ) {
@@ -153,8 +137,8 @@ class Photology extends Plugin
 	**/
 	public function make_thumbnail( $image )
 	{
-		// Get maximum size from stored options
-		$max_dimension= Options::get( 'photology__maxdim' ); 
+		// Get maximum size from stored options, or use a default of 100.
+		$max_dimension= Options::get( 'photology__maxdim', 100 ); 
 
 		// Get the image from the filesystem
 		$img= $this->get_image_file( $image );
